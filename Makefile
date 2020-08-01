@@ -15,7 +15,7 @@ obj/%.o: src/%.cc
 
 build: $(OBJ_FILES)
 	mkdir -p bin/
-	$(BUILD_CMD) obj/*.o -o bin/linked_list
+	$(BUILD_CMD) obj/*.o -o bin/$(EXE_FILENAME)
 
 clean:
 	rm -rf obj/
