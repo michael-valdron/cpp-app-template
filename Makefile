@@ -1,32 +1,25 @@
-ifdef DEBUG
-DEBUG := -g
-TASK := debug
-else
-TASK := run
-endif
+MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+PROJECT_NAME := $(notdir $(patsubst %/,%,$(dir $(MKFILE_PATH))))
+BUILD_PREFIX := out
+BUILD_DIR := $(BUILD_PREFIX)/build
+EXE := $(BUILD_DIR)/src/$(PROJECT_NAME)
 
-BUILD_CMD := g++ $(DEBUG) -std=c++11
-CC_FILES := $(wildcard src/*.cc)
-OBJ_FILES := $(patsubst src/%.cc,obj/%.o,$(CC_FILES))
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+	cmake . -B $(BUILD_DIR)
+	make -C $(BUILD_DIR)
 
-obj/%.o: src/%.cc
-	mkdir -p obj/
-	$(BUILD_CMD) -c -o $@ $<
-
-build: $(OBJ_FILES)
-	mkdir -p bin/
-	$(BUILD_CMD) obj/*.o -o bin/$(EXE_FILENAME)
-
+build: $(BUILD_DIR)
+	
 clean:
-	rm -rf obj/
-	rm -rf bin/
+	rm -rf $(BUILD_PREFIX)
 
-debug:
-	gdb ./bin/$(EXE_FILENAME)
+# debug: $(BUILD_DIR)
+# 	gdb $(EXE)
 
-run:
-	./bin/$(EXE_FILENAME)
+run: rebuild
+	$(EXE)
 
 rebuild: clean build
 
-all: rebuild $(TASK)
+.PHONY: build clean run rebuild
