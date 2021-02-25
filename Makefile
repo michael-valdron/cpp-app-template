@@ -2,7 +2,7 @@ MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 PROJECT_NAME := $(notdir $(patsubst %/,%,$(dir $(MKFILE_PATH))))
 BUILD_PREFIX := out
 BUILD_DIR := $(BUILD_PREFIX)/build
-EXE := $(BUILD_DIR)/src/$(PROJECT_NAME)
+EXE := $(BUILD_DIR)/$(PROJECT_NAME)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)

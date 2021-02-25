@@ -5,8 +5,5 @@ project(
     VERSION 1.0 
     LANGUAGES CXX)
 
-add_subdirectory(src)
-
-source_group(TREE src PREFIX sources)
-
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_FILES})
+file(GLOB_RECURSE SOURCES "src/*.cc")
+add_executable(${PROJECT_NAME} ${SOURCES})
