@@ -17,7 +17,7 @@ clean:
 # debug: $(BUILD_DIR)
 # 	gdb $(EXE)
 
-run: rebuild
+run:
 	$(EXE)
 
 rebuild: clean build
