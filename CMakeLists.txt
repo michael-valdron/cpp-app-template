@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include_directories(include)
 
-file(GLOB_RECURSE SOURCES "src/*.cc")
+file(GLOB_RECURSE SOURCES "src/*.cc" "src/*.cpp" "src/*.cxx")
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Link submodules
