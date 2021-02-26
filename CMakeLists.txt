@@ -24,10 +24,10 @@ set(INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include/")
 # ...
 
 # Link project includes
-include_directories(include)
+include_directories(${INCLUDE_DIR})
 
 # Get source files
-file(GLOB_RECURSE SOURCES "src/*.cc" "src/*.cpp" "src/*.cxx")
+file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cc" "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.cxx")
 
 # Compile executable for project
 add_executable(${PROJECT_NAME} ${SOURCES})
